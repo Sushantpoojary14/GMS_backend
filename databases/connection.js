@@ -9,7 +9,7 @@ const sequelize = new Sequelize(
   {
     host: process.env.HOST,
     dialect: process.env.DIALECT,
-    port:6259
+    // port:process.env.PORT
   }
 );
 
@@ -33,8 +33,8 @@ db.Attendance = require("../models/attendance")(sequelize,DataTypes);
 db.M_PT = require("../models/m_PT")(sequelize,DataTypes);
 
 db.sequelize
-// .sync()
-.sync({ force: true })
+.sync()
+// .sync({ force: true })
   .then((data) => {
     const hashedPassword = bcrypt.hashSync("12345678", 8);
     db.Admin.create({
