@@ -10,7 +10,9 @@ const sequelize = new Sequelize(
     host: process.env.HOST,
     dialect: process.env.DIALECT,
     // port:process.env.PORT
-  }
+    debug: true,
+  },
+  
 );
 
 try {
@@ -32,23 +34,38 @@ db.T_payment = require("../models/t_payment")(sequelize,DataTypes);
 db.Attendance = require("../models/attendance")(sequelize,DataTypes);
 db.M_PT = require("../models/m_PT")(sequelize,DataTypes);
 
+db.Member.hasMany(db.M_payment, {
+  foreignKey: "m_id",
+});
+db.Trainer.hasMany(db.T_payment, {
+  foreignKey: "t_id",
+});
+db.Member.hasMany(db.Attendance, {
+  foreignKey: "m_id",
+});
+
 db.sequelize
-.sync()
-// .sync({ force: true })
-  .then((data) => {
-    const hashedPassword = bcrypt.hashSync("12345678", 8);
-    db.Admin.create({
-      email:"admin@admin",
-      password:hashedPassword
-    });
-    db.User.create({
-      email:"user@user",
-      password:hashedPassword
-    });
-    console.log("successful sync");
+.sync().then((data) => {
+  console.log("successful sync");
   })
   .catch((err) => {
     console.log(err);
   });
+// .sync({ force: true })
+//   .then((data) => {
+//     const hashedPassword = bcrypt.hashSync("12345678", 8);
+//     db.Admin.create({
+//       email:"admin@admin",
+//       password:hashedPassword
+//     });
+//     db.User.create({
+//       email:"user@user",
+//       password:hashedPassword
+//     });
+//     console.log("successful sync");
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
 module.exports = db;

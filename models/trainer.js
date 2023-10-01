@@ -51,6 +51,11 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue:1,
         allowNull: false,
       },
+      t_image: {
+        type: DataTypes.STRING(100),
+        // allowNull: false,
+       
+      },
     },
 
   );

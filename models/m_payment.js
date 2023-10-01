@@ -34,6 +34,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER(6),
         allowNull: false,
       },
+      fee: {
+        type: DataTypes.INTEGER(6),
+        allowNull: false,
+      },
     },
 
   );

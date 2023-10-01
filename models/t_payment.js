@@ -31,7 +31,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       total_month: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER(10),
+        allowNull: false,
+      },
+      fee: {
+        type: DataTypes.INTEGER(10),
         allowNull: false,
       },
     },
