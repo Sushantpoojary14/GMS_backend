@@ -14,6 +14,14 @@ adminRouter.get("/profile", (req, res) => {
 
 adminRouter.get("/all-user-data", (req, res) => adminC.userAllData(req, res));
 adminRouter.post("/add-user-data", (req, res) => adminC.addUserData(req, res));
-adminRouter.get("/count-user-data", (req, res) => adminC.userCountData(req, res));
+adminRouter.put("/update-user-data/:user_id", (req, res) =>
+  adminC.updateUserData(req, res)
+);
+adminRouter.get("/count-user-data", (req, res) =>
+  adminC.userCountData(req, res)
+);
 adminRouter.get("/logout", (req, res) => adminAC.adminLogout(req, res));
+adminRouter.delete("/delete-user/:user_id", (req, res) =>
+  adminC.deleteUser(req, res)
+);
 module.exports = adminRouter;

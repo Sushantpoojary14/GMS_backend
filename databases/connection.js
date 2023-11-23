@@ -45,27 +45,27 @@ db.Member.hasMany(db.Attendance, {
 });
 
 db.sequelize
-.sync().then((data) => {
-  console.log("successful sync");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-// .sync({ force: true })
-//   .then((data) => {
-//     const hashedPassword = bcrypt.hashSync("12345678", 8);
-//     db.Admin.create({
-//       email:"admin@admin",
-//       password:hashedPassword
-//     });
-//     db.User.create({
-//       email:"user@user",
-//       password:hashedPassword
-//     });
-//     console.log("successful sync");
+// .sync().then((data) => {
+//   console.log("successful sync");
 //   })
 //   .catch((err) => {
 //     console.log(err);
 //   });
+.sync({ force: true })
+  .then((data) => {
+    const hashedPassword = bcrypt.hashSync("12345678", 8);
+    db.Admin.create({
+      email:"admin@admin",
+      password:hashedPassword
+    });
+    db.User.create({
+      email:"user@user",
+      password:hashedPassword
+    });
+    console.log("successful sync");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 module.exports = db;
